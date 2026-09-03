@@ -1,17 +1,11 @@
 # BASIC JOB PORTAL
 <div align="center">
-
-<div align="center">
-
 <img
-  src="assets/stack-portal.gif"
-  alt="WELCOME TO STACK PORTAL"
+  src="assets/stack-portal-header.svg"
+  alt="Welcome to Stack Portal"
   width="900"
 />
-
 </div>
-
-
 <div align="center">
 A basic job portal project created according to user requirements.
 The project focuses on providing a simple, clean, and user-friendly platform for exploring and managing job opportunities.
