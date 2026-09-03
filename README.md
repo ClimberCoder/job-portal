@@ -2,9 +2,8 @@ BASIC JOB PORTAL
 <div align="center">
 
 Welcome to STACK PORTAL 🚀
-
-A basic job portal project created according to user requirements. The project focuses on providing a simple, clean, and user-friendly platform for exploring and managing job opportunities.
-
+A basic job portal project created according to user requirements.
+The project focuses on providing a simple, clean, and user-friendly platform for exploring and managing job opportunities.
 </div>
 🎯 What This Project Demonstrates
 
