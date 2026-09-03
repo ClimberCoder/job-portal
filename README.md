@@ -1,4 +1,4 @@
-# BASIC JOB PORTAL
+
 <div align="center">
 <img
   src="assets/stack-portal-header.svg"
