@@ -4,12 +4,13 @@
 <div align="center">
 
 <img
-  src="assets/stack-portal-header.svg"
-  alt="Welcome to Stack Portal"
+  src="assets/stack-portal.gif"
+  alt="WELCOME TO STACK PORTAL"
   width="900"
 />
 
 </div>
+
 
 <div align="center">
 A basic job portal project created according to user requirements.
