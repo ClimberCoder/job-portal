@@ -2,11 +2,16 @@
 <div align="center">
 
 <div align="center">
-🚀 WELCOME TO
-STACK PORTAL
-A Simple. Modern. User-Friendly Job Portal.
-<br>
-Explore Jobs • Discover Opportunities • Build Careers
+<div align="center">
+
+<img
+  src="assets/stack-portal-header.svg"
+  alt="Welcome to Stack Portal"
+  width="900"
+/>
+
+</div>
+
 
 </div>
 <div align="center">
