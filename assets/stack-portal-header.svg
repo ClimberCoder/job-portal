@@ -4,144 +4,57 @@
   viewBox="0 0 1000 300"
   xmlns="http://www.w3.org/2000/svg"
 >
-
   <defs>
-
-    <!-- Smooth animated gradient -->
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-
-      <stop offset="0%" stop-color="#00C6FF">
-        <animate
-          attributeName="stop-color"
-          values="#00C6FF;#0072FF;#7F00FF;#FF0080;#00C6FF"
-          dur="8s"
-          repeatCount="indefinite"
-        />
-      </stop>
-
-      <stop offset="50%" stop-color="#7F00FF">
-        <animate
-          attributeName="stop-color"
-          values="#7F00FF;#FF0080;#00C6FF;#00FF87;#7F00FF"
-          dur="8s"
-          repeatCount="indefinite"
-        />
-      </stop>
-
-      <stop offset="100%" stop-color="#FF0080">
-        <animate
-          attributeName="stop-color"
-          values="#FF0080;#00C6FF;#7F00FF;#FF0080"
-          dur="8s"
-          repeatCount="indefinite"
-        />
-      </stop>
-
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00C6FF"/>
+      <stop offset="50%" stop-color="#7F00FF"/>
+      <stop offset="100%" stop-color="#FF0080"/>
     </linearGradient>
 
-
-    <!-- Soft glow effect -->
     <filter id="glow">
-
-      <feGaussianBlur
-        stdDeviation="6"
-        result="blur"
-      />
-
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
-
     </filter>
-
   </defs>
 
-
-  <!-- WELCOME TO -->
-
   <text
     x="500"
-    y="85"
+    y="90"
     text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="38"
+    font-family="Arial, sans-serif"
+    font-size="40"
     font-weight="900"
     letter-spacing="8"
-    fill="url(#textGradient)"
-    filter="url(#glow)"
+    fill="url(#gradient)"
   >
-
     WELCOME TO
-
-    <animate
-      attributeName="opacity"
-      values="0;1;1;1"
-      dur="2s"
-      fill="freeze"
-    />
-
   </text>
-
-
-  <!-- STACK PORTAL -->
 
   <text
     x="500"
-    y="180"
+    y="185"
     text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="82"
+    font-family="Arial, sans-serif"
+    font-size="85"
     font-weight="900"
     letter-spacing="2"
-    fill="url(#textGradient)"
+    fill="url(#gradient)"
     filter="url(#glow)"
   >
-
     STACK PORTAL
-
-    <!-- Smooth fade -->
-    <animate
-      attributeName="opacity"
-      values="0;1;1;1"
-      dur="2.5s"
-      fill="freeze"
-    />
-
-    <!-- Very subtle breathing animation -->
-    <animateTransform
-      attributeName="transform"
-      type="scale"
-      values="0.98;1;1.01;1"
-      dur="6s"
-      repeatCount="indefinite"
-    />
-
   </text>
-
-
-  <!-- Subtitle -->
 
   <text
     x="500"
-    y="235"
+    y="240"
     text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
+    font-family="Arial, sans-serif"
     font-size="18"
-    font-weight="500"
-    letter-spacing="2"
     fill="#777"
   >
-
     A Simple • Modern • User-Friendly Job Portal
-
-    <animate
-      attributeName="opacity"
-      values="0;1"
-      dur="3s"
-      fill="freeze"
-    />
-
   </text>
-
 </svg>
