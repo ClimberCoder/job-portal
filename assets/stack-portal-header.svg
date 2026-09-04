@@ -1,0 +1,60 @@
+<svg
+  width="1000"
+  height="300"
+  viewBox="0 0 1000 300"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00C6FF"/>
+      <stop offset="50%" stop-color="#7F00FF"/>
+      <stop offset="100%" stop-color="#FF0080"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <text
+    x="500"
+    y="90"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="40"
+    font-weight="900"
+    letter-spacing="8"
+    fill="url(#gradient)"
+  >
+    WELCOME TO
+  </text>
+
+  <text
+    x="500"
+    y="185"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="85"
+    font-weight="900"
+    letter-spacing="2"
+    fill="url(#gradient)"
+    filter="url(#glow)"
+  >
+    STACK PORTAL
+  </text>
+
+  <text
+    x="500"
+    y="240"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="18"
+    fill="#777"
+  >
+    A Simple • Modern • User-Friendly Job Portal
+  </text>
+</svg>
