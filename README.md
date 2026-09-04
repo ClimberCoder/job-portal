@@ -2,7 +2,7 @@
 <div align="center">
   <img src="assets/stack-portal-header.svg" alt="Welcome to Stack Portal" width="900" />
 
-  # 🚀 Stack Portal
+  # Stack Portal
   **A Full-Stack Job Portal & Professional Career Platform**
 
   <p><strong>Discover Jobs • Apply • Build Your Profile • Connect • Grow</strong></p>
@@ -29,26 +29,26 @@
 
 ---
 
-## 📖 About
+## About The Project
 
 **Stack Portal** is a full-stack job platform designed for job discovery, application management, professional profiles, and career networking.
 
 | Role | Target User | Key Capabilities |
 | :--- | :--- | :--- |
-| **👨‍💻 Seeker** | Job Seekers & Candidates | Search jobs, build profiles, upload resumes, and track applications. |
-| **🛠️ Admin** | Employers & Recruiters | Manage postings, assign private jobs, review candidates, and control the pipeline. |
+| **Job Seeker** | Job Seekers & Candidates | Search jobs, build profiles, upload resumes, and track applications. |
+| **Admin** | Employers & Recruiters | Manage postings, assign private jobs, review candidates, and control the pipeline. |
 
 ---
 
-## ✨ Features
+## Features of the Stack Portal:
 
-### 👨‍💻 Job Seeker
+### Job Seeker
 * **Authentication:** Registration, email verification, password auth, login OTP, password resets.
 * **Job Search:** Discovery for published jobs, private job assignments, detailed job views.
 * **Applications:** Direct job application, duplicate-prevention, status tracking, saved jobs, alerts.
 * **Networking & Profile:** Complete professional profile, resume uploads/downloads, people discovery, connection requests.
 
-### 🛠️ Administrator
+### Administrator
 * **Dashboard:** Real-time platform statistics and metrics.
 * **Job Management:** Create, edit, publish, delete, and restrict private jobs to targeted seekers.
 * **Candidate Management:** Review seeker profiles, inspect resumes, and transition application statuses.
@@ -64,7 +64,7 @@
 
 ---
 
-## 🎨 User Experience
+## User Experience
 
 ### Navigation Architecture
 ```text
@@ -73,7 +73,7 @@
 │                                                    Profile  │
 └─────────────────────────────────────────────────────────────┘
 ```
-> **Secondary Menu (via Profile Dropdown):** 🔖 Saved Jobs | ⚙️ Settings | 🚪 Logout
+> **Secondary Menu (via Profile Dropdown):**  Saved Jobs |  Settings |  Logout
 
 ### Job Visibility Logic
 
@@ -90,7 +90,7 @@ Applying transfers the job out of the active discovery feed into **Application H
 
 ---
 
-## 🤝 Professional Networking
+##  Professional Networking
 
 * **People Discovery:** Search professionals by name, job title, company, skills, or location.
 * **Connection Lifecycle:**
@@ -102,16 +102,16 @@ Applying transfers the job out of the active discovery feed into **Application H
 
 
 
-## 🧱 Architecture
+##  Architecture
 
 Stack Portal
-├── 🎨 Frontend  (React 19, TypeScript, Vite, React Router, Tailwind CSS 4, Motion)
-├── ⚙️ Backend   (Node.js, Express, TypeScript, JWT, bcrypt, Multer)
-├── 🗄️ Database  (MongoDB + Mongoose ODM)
-└── 📎 Storage   (MongoDB GridFS)
+├──  Frontend  (React 19, TypeScript, Vite, React Router, Tailwind CSS 4, Motion)
+├──  Backend   (Node.js, Express, TypeScript, JWT, bcrypt, Multer)
+├──  Database  (MongoDB + Mongoose ODM)
+└──  Storage   (MongoDB GridFS)
 
 
-### 📁 Directory Structure
+###  Directory Structure
 
 ``` text
 ├── backend/
@@ -131,7 +131,7 @@ Stack Portal
 └── package.json
 ```
 
-## 🧰 Technology Stack
+##  Technology Stack
 ```text
 | Layer | Technology |
 | :--- | :--- |
@@ -143,11 +143,10 @@ Stack Portal
 ```
 ---
 
-## 📡 API Reference
-
+##  API Referencea
 All protected endpoints require authorization header: `Authorization: Bearer <jwt-token>`
 
-### 🔐 Authentication API
+###  Authentication API
 
 | Method | Endpoint | Access | Description |
 | :--- | :--- | :---: | :--- |
@@ -159,7 +158,7 @@ All protected endpoints require authorization header: `Authorization: Bearer <jw
 | `POST` | `/api/auth/reset-password` | Public | Set new account password |
 | `GET`  | `/api/auth/me` | Protected | Fetch current user context |
 
-### 👨‍💻 Seeker API
+###  Seeker API
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -170,7 +169,7 @@ All protected endpoints require authorization header: `Authorization: Bearer <jw
 | `POST` | `/api/seeker/applications` | Apply for a job |
 | `GET` | `/api/seeker/applications` | View submission history |
 
-### 🛠️ Admin API
+###  Admin API
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -186,7 +185,7 @@ All protected endpoints require authorization header: `Authorization: Bearer <jw
 
 ---
 
-## 🗄️ Data Models Overview
+##  Data Models Overview
 ```text
 User
 ├── email
@@ -212,7 +211,7 @@ Application
 
 ---
 
-## 🚀 Installation & Setup
+##  Installation & Setup GUIDE
 
 ### Prerequisites
 * **Node.js**: v18 or higher
@@ -245,7 +244,7 @@ NODE_ENV=development
 
 ---
 
-## ▶️ Development & Build
+## Development & Build
 
 ### Running Development Mode
 
@@ -276,7 +275,7 @@ npm run build
 npm start
 ---
 
-## 📜 Repository Scripts
+##  Repository Scripts
 
 | Command | Action |
 | --- | --- |
@@ -288,7 +287,7 @@ npm start
 
 ---
 
-## 🔒 Security Practices
+##  Security Practices
 
 * **Password Hashing:** Enforced using `bcrypt` salting routines.
 * **Stateless Authorization:** Token validation middleware guards API endpoints against unauthorized roles.
@@ -297,7 +296,7 @@ npm start
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Follow these steps to submit improvements:
 
@@ -309,7 +308,7 @@ Contributions are welcome! Follow these steps to submit improvements:
 
 ---
 
-### 🚀 STACK PORTAL
+###  STACK PORTAL
 
 **Discover. Connect. Apply. Grow.**
 
