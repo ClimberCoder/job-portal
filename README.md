@@ -1,367 +1,173 @@
-<div align="center"> <img src="assets/stack-portal-header.svg" alt="Welcome to Stack Portal" width="900" /> </div> <div align="center">
-🚀 A Modern Full-Stack Job & Career Platform
+ChatGPT said:
+Yes. For GitHub, I’d make it much more structured, scannable, centered where appropriate, and developer-friendly, while keeping the API reference, setup, architecture, workflows, security, and feature details.
 
-A full-stack job portal designed to connect job seekers with published opportunities through a simple, clean, responsive, and user-friendly experience.
+<div align="center">
+<img src="assets/stack-portal-header.svg" alt="Welcome to Stack Portal" width="900" />
 
-Built with React + TypeScript + Node.js + Express + MongoDB
+🚀 Stack Portal
+A Full-Stack Job Portal & Professional Career Platform
+<p> <strong>Discover Jobs • Apply • Build Your Profile • Connect • Grow</strong> </p> <p> A modern full-stack platform connecting job seekers with career opportunities through a clean, responsive, and professional experience. </p> <p> <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React 19" /> <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /> <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /> <img src="https://img.shields.io/badge/Express.js-Backend-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" /> <img src="https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" /> <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /> </p> <p> <a href="#-features">Features</a> • <a href="#-architecture">Architecture</a> • <a href="#-api-reference">API</a> • <a href="#-installation">Installation</a> • <a href="#-development">Development</a> </p> </div>
+📖 About
+Stack Portal is a full-stack job portal built to provide a simple and professional platform for discovering jobs, managing applications, maintaining professional profiles, and connecting with other professionals.
 
-</div>
-🎯 What This Project Demonstrates
-💻 As a Developer, This Project Demonstrates
-🎨 UI/UX Design — Creating a clean, responsive, and easy-to-use interface.
-💡 Creativity — Designing an engaging experience while keeping the application simple.
-🧩 Problem Solving — Understanding user requirements and converting them into functional features.
-📱 Responsive Design — Making the portal accessible across different screen sizes.
-👤 User Experience — Organizing information so users can easily search, explore, and apply for jobs.
-🔐 Authentication & Authorization — Implementing secure role-based access for seekers and administrators.
-🗄️ Full-Stack Development — Connecting a modern React frontend with an Express/MongoDB backend.
-🚀 Features
-👨‍💻 Job Seekers
-📝 Register with:
-Name
-Unique username
-Email address
-Password
-📧 Verify email before accessing the platform.
-🔐 Sign in using password + short-lived email OTP.
-🔎 Browse published public jobs.
-🔒 View private jobs assigned specifically to the signed-in seeker.
-🔍 Search jobs by:
-Title
-Company
-Required skills
-📄 View complete job details, including:
-Company
-Location
-Employment type
-Salary range
-Number of openings
-Required skills
-Full description
-📤 Submit one application per job.
-📊 View application history and current application status.
-👤 Maintain a professional profile containing:
-Full name
-Phone number
-Location
-Preferred title
-Expected salary
-Skills
-Resume
-📎 Upload PDF, DOC, or DOCX resumes.
-⬇️ Download saved resumes later.
-🛠️ Administrators
-📊 View dashboard metrics:
-Total seekers
-Active jobs
-Total jobs
-Pending applications
-Shortlisted candidates
-Total applications
-➕ Create job listings.
-✏️ Edit job listings.
-🗑️ Delete job listings.
-📢 Publish public or private jobs.
-🎯 Assign private listings to specific seekers.
-👥 Browse registered seeker profiles.
-📄 View seeker resume documents.
-📋 View all applications with:
-Candidate
-Job
-Email
-Application date
-Resume
-🔄 Manage application pipeline:
-APPLIED
-   ↓
-UNDER_REVIEW
-   ↓
-SHORTLISTED
-   ↓
-INTERVIEW
-   ↓
-SELECTED / REJECTED
+The platform contains separate experiences for:
 
-🌟 Planned / New Platform Experience
+Role	Purpose
+👨‍💻 SEEKER	Search jobs, manage profile, upload resume, and apply
+🛠️ ADMIN	Manage jobs, seekers, applications, and hiring pipeline
 
-The platform is being evolved from a basic job portal into a more complete career + professional networking platform.
+The project is designed to evolve from a basic job portal into a complete career + professional networking platform.
 
-The new experience focuses on:
-
-💼 Job discovery
-🔎 Advanced job search
+✨ Features
+👨‍💻 Job Seeker
+📝 Account registration
+📧 Email verification
+🔐 Password authentication
+🔢 Login OTP verification
+🔑 Password reset
+🔎 Job search
+💼 Published job discovery
+🔒 Private jobs assigned to specific seekers
+📄 Detailed job information
+📤 Job applications
+📊 Application tracking
+👤 Professional profile
+📎 Resume upload
+⬇️ Resume download
 🔖 Saved jobs
-👥 Professional networking
-🤝 Connections
-👤 Professional profiles
-🔔 Job and application alerts
-⚙️ Account settings
-✨ Premium UI animations
-📱 Responsive mobile experience
+🔔 Application alerts
+🤝 Professional networking
+👥 People discovery
+✨ Animated and responsive UI
+🛠️ Administrator
+📊 Admin dashboard
+👥 Seeker management
+💼 Job management
+➕ Create jobs
+✏️ Edit jobs
+🗑️ Delete jobs
+📢 Publish jobs
+🔒 Create private jobs
+🎯 Assign private jobs to seekers
+📄 View seeker profiles
+📎 View resumes
+📋 Manage applications
+🔄 Update application pipeline
+📈 View platform statistics
+Application Pipeline
+┌──────────┐
+│ APPLIED  │
+└────┬─────┘
+     ↓
+┌────────────────┐
+│ UNDER_REVIEW   │
+└───────┬────────┘
+        ↓
+┌──────────────┐
+│ SHORTLISTED  │
+└──────┬───────┘
+       ↓
+┌────────────┐
+│ INTERVIEW  │
+└─────┬──────┘
+      ↓
+ ┌────┴──────────┐
+ ↓               ↓
+SELECTED      REJECTED
 
-The interface will take UX inspiration from platforms such as LinkedIn, Internshala, and Unstop, while maintaining an original Stack Portal identity.
+🎨 User Experience
+Stack Portal focuses on a professional and minimal experience inspired by modern career platforms.
 
-🎨 UI / UX Direction
+Navigation
+The user interface uses a minimal navigation system:
 
-The goal is to create a:
+┌─────────────────────────────────────────────────────────────┐
+│ Stack Portal   Search...   Home   Jobs   Network   Alerts   │
+│                                                    Profile  │
+└─────────────────────────────────────────────────────────────┘
 
-Minimal + Professional + Modern + Premium + Responsive + Fast
-
-experience.
-
-✨ Design Principles
-Clean and minimal navigation
-Professional typography
-Modern job cards
-Clear information hierarchy
-Subtle shadows and borders
-Rounded components
-Consistent spacing
-Professional icons
-Responsive layouts
-Smooth micro-interactions
-Accessible UI
-
-Avoid unnecessary visual clutter, excessive gradients, and distracting animations.
-
-🧭 Navigation
-
-The user-facing navigation is designed around a minimal professional taskbar.
-
-Main Navigation
-🏠 Home
-💼 Jobs
-🤝 Network
-🔔 Alerts
-👤 Profile
-Secondary Navigation
-
-Accessible through the profile/account menu:
+Secondary options such as:
 
 🔖 Saved Jobs
 ⚙️ Settings
 🚪 Logout
-
-The navigation should remain minimal and easy to understand on both desktop and mobile.
-
-🔍 Global Search
-
-Provide a global search experience for:
-
-💼 Jobs
-🎓 Internships
-👥 People
-🏢 Companies
-🧠 Skills
-📍 Locations
-💻 Job titles
-
-Example placeholder:
-
-Search jobs, internships, people, companies...
-
-Search results should be organized into relevant categories.
+are accessible through the user's profile menu.
 
 💼 Job Discovery
+The platform prioritizes active and available opportunities.
 
-The job feed should display only opportunities that are:
+Users can:
 
-✅ Published
-✅ Active
-✅ Open for applications
-✅ Not expired
-❌ Not already applied to by the current user
-
-The primary experience should be:
-
-🔎 Search
-   ↓
-🎯 Filter
-   ↓
-💼 Discover
-   ↓
-📄 View Details
-   ↓
-🔖 Save
-   ↓
-📤 Apply
-
-🃏 Premium Job Cards
-
-Job cards are one of the most important components of Stack Portal.
-
-Each job card should clearly display:
-
-🏢 Company Information
-Company logo
-Company name
-Verified badge when applicable
-Posted date
-💼 Job Information
-Job title
-Location
-Remote / Hybrid / On-site
-Job type
-Experience level
-Salary / stipend
-Internship duration
-Number of openings
-Application deadline
-🏷️ Skills
-
-Display required skills as modern badges/chips.
-
-Example:
-
-React    JavaScript    Node.js    MongoDB
-
-📄 Description
-
-Display a short description with a View Details option.
-
-🔘 Actions
-Apply Now
-View Details
-Save
-
-The Apply Now button should be the primary CTA.
-
-✨ Job Card Animations
-
-Job cards should feel interactive without becoming distracting.
-
-On Load
-Fade in
-Slight upward movement
-Subtle staggered appearance
-On Hover
-Slight elevation
-Subtle shadow increase
-Border highlight
-Save
-🔖 Save
-   ↓
-✓ Saved
-
-Apply
-📤 Apply Now
-      ↓
-⏳ Applying...
-      ↓
-✅ Application Submitted
-
-
-After a successful application, the job should be removed from the user's available job feed.
-
-📄 Job Details
-
-The Job Details page should provide a complete, structured job description.
-
-Job Overview
-Job title
-Company
-Location
-Work mode
-Job type
-Experience
-Salary / stipend
-Duration
-Openings
-Application deadline
-About the Job
-
-Display the complete recruiter-provided description.
-
-Responsibilities
-
-Display responsibilities using readable bullet points.
-
-Requirements
-
-Include:
-
-Required skills
-Education
-Experience
-Eligibility
-Other requirements
-Benefits / Perks
-
-Display available benefits.
-
-About the Company
-
-Include:
-
-Company logo
-Company name
-Company description
-Location
-Website
-📤 Application System
-
-Users can submit one application per job.
-
-Application workflow:
-
-Apply Now
-    ↓
-Application Form
-    ↓
-Submit
-    ↓
-Applying...
-    ↓
-✅ Application Submitted
-    ↓
-Application Saved
-    ↓
-Job Removed From Available Feed
-
-
-The backend must prevent duplicate applications.
-
-Use an appropriate database constraint such as:
-
-unique(user_id, job_id)
-
-🚫 Already Applied Jobs
-
-A job that has already been applied to by the current user must not appear in the user's available job feed.
-
-The backend should enforce:
+Search jobs
+Filter jobs
+Sort results
+View detailed descriptions
+Save jobs
+Apply to jobs
+Job Visibility
+Only eligible jobs should appear in the user's available feed:
 
 Published
-+
+    +
 Active
-+
+    +
 Not Expired
-+
-Not Applied By Current User
-=
-Visible Jobs
+    +
+Not Already Applied
+    ↓
+VISIBLE JOB
 
+After applying:
 
-This must continue working after:
+Apply
+  ↓
+Application Submitted
+  ↓
+Job removed from available feed
+  ↓
+Application remains in history
 
-Page refresh
-Navigation
-Logout/login
-Browser restart
+Duplicate applications must be prevented at the backend/database level.
 
-Application history should still contain previously submitted applications.
+🃏 Job Cards
+Job cards are designed to make opportunities easy to scan.
 
-🔎 Find Jobs
+Each card can display:
 
-Provide a dedicated Jobs page with:
+🏢 Company logo
+💼 Job title
+🏢 Company name
+📍 Location
+💻 Work mode
+🕐 Employment type
+💰 Salary / stipend
+🎓 Experience
+⏳ Duration
+👥 Openings
+📅 Deadline
+🏷️ Required skills
+🔖 Save
+📄 View Details
+📤 Apply
+The UI uses subtle:
 
-Search
-Location
-Filters
-Sorting
-Job cards
-Pagination or infinite scrolling
-🎯 Filters
+Hover animations
+Loading states
+Save animations
+Apply animations
+Card entrance animations
+🔎 Search & Filtering
+Search supports:
+
+Job titles
+Companies
+Skills
+Locations
+Internships
+People
+Companies
+Job filters include:
+
 Job type
 Internship
 Full-time
@@ -372,125 +178,51 @@ Hybrid
 On-site
 Location
 Experience
-Salary / stipend
+Salary
 Duration
 Skills
 Category
 Date posted
-↕️ Sorting
+Sorting:
+
 Most Relevant
 Newest
-Salary: High to Low
+Salary: High → Low
 Deadline: Soonest
-🔖 Saved Jobs
+🤝 Professional Networking
+Stack Portal includes a professional networking experience.
 
-Users can save jobs and access them from the Saved Jobs section.
-
-Each saved job should provide:
-
-View Details
-Apply
-Remove from Saved
-
-Empty state:
-
-No saved jobs yet.
-
-Provide a Find Jobs action.
-
-👥 People
-
-Provide professional people discovery.
-
-Users should be able to search by:
+People
+Users can discover professionals by:
 
 Name
 Job title
 Company
 Skills
 Location
-
-Person cards should contain:
-
-Profile photo
-Name
-Professional headline
-Company
-Location
-Skills
-Mutual connections
-View Profile
-Connect
-
-Connection state:
-
+Connection States
 Connect
    ↓
 Pending
    ↓
 Connected
 
+Network
+The Network section supports:
 
-All states should be stored in the backend.
-
-🤝 Network
-
-The Network page should be fully functional.
-
-Connection Requests
-
-Display:
-
-Profile photo
-Name
-Headline
-Mutual connections
-Accept
-Reject
-My Connections
-
-Provide:
-
-Search
-View Profile
-Remove Connection
-People You May Know
-
-Display recommended professionals with:
-
-Connect
-
-Sent Requests
-
-Display pending requests with:
-
-Cancel Request
-
-Recently Connected
-
-Display recently accepted connections.
-
-All actions must update immediately and persist after refresh.
-
-🔔 Alerts
-
-The Alerts page should display:
-
-Job alerts
-Application updates
 Connection requests
-Accepted connections
-Recommended jobs
-Profile activity
+Accept request
+Reject request
+Sent requests
+Cancel request
+My connections
+Remove connection
+People You May Know
+Recently connected
+Networking actions should persist in the backend.
 
-Support:
-
-Read/unread states
-Mark as read
-Mark all as read
-👤 My Profile
-
-Create a professional profile containing:
+👤 Professional Profiles
+Profiles contain:
 
 Profile photo
 Full name
@@ -503,297 +235,258 @@ Projects
 Certifications
 Activity
 Connections
+Resume
+Users can edit their profiles through the Settings/Profile interface.
 
-Provide:
+🔔 Alerts
+Alerts can contain:
 
-Edit Profile
-
-Users should be able to update their professional information.
-
-⚙️ Settings
-
-The Settings section should include:
-
-👤 Profile
-
-View profile information.
-
-✏️ Update Profile
-
-Edit:
-
-Name
-Profile photo
-Headline
-About
-Skills
-Experience
-Education
-Location
-Contact information
-📊 Your Activity
-
-Display:
-
-Jobs viewed
-Jobs applied to
-Saved jobs
+Job alerts
+Application updates
+Connection requests
+Accepted connections
+Recommended jobs
 Profile activity
-Network activity
-✅ Profile Checklist
+Notifications support:
 
-Show profile completion.
+Read/unread state
+Mark as read
+Mark all as read
+✨ Animations & Interactions
+The frontend uses smooth and lightweight animations.
 
-Example:
-
-80% Profile Complete
-
-Checklist:
-
-Profile photo
-Professional headline
-About
-Skills
-Experience
-Education
-🎯 Recommendations
-
-Display:
-
-Recommended Jobs
-People to Know
-🔐 Account
-
-Include:
-
-Privacy
-Notifications
-Security
-Account preferences
-🎬 Authentication & UI Animations
-
-Stack Portal should use a consistent animation system.
-
-🔐 Sign In
-Sign In
+Authentication
+SIGN IN
   ↓
 Signing in...
   ↓
 Loading
   ↓
-✅ Authentication Successful
+✓ Success
   ↓
 Dashboard
 
-
-Use:
-
-Logo fade-in
-Form slide/fade
-Subtle input animation
-Button loading state
-Smooth dashboard transition
-📝 Register
-Create Account
-      ↓
+REGISTER
+  ↓
 Creating account...
-      ↓
-✅ Account Created
-      ↓
+  ↓
+✓ Account Created
+  ↓
 Application
 
-
-Use subtle form and validation animations.
-
-🚪 Logout / Sign Out
-Logout
+LOGOUT
   ↓
-Signing you out...
+Signing out...
   ↓
 Session Cleared
   ↓
 Sign In
 
+UI Interactions
+Animations are used for:
 
-Authenticated content should disappear before the user returns to the authentication screen.
+Page transitions
+Navigation
+Job cards
+Save
+Apply
+Connect
+Notifications
+Dropdowns
+Forms
+Loading states
+Success states
+Toast messages
+Animations should remain fast and should not interfere with usability.
 
-🔄 Page Transitions
+🧱 Architecture
+Stack Portal
+│
+├── 🎨 Frontend
+│   ├── React
+│   ├── TypeScript
+│   ├── Vite
+│   ├── React Router
+│   ├── Tailwind CSS
+│   ├── Lucide React
+│   └── Motion
+│
+├── ⚙️ Backend
+│   ├── Node.js
+│   ├── Express
+│   ├── TypeScript
+│   ├── JWT
+│   ├── bcrypt
+│   └── Multer
+│
+├── 🗄️ Database
+│   ├── MongoDB
+│   └── Mongoose
+│
+└── 📎 Storage
+    └── MongoDB GridFS
 
-Use subtle transitions when navigating between:
-
-Home
-Jobs
-Job Details
-Saved
-People
-Network
-Alerts
-Profile
-Settings
-
-Use:
-
-Fade
-Slide
-Scale
-Stagger
-
-Animations should be fast and smooth.
-
-Respect:
-
-prefers-reduced-motion
-
-⏳ Loading & Error States
-
-Never display an unexplained blank screen.
-
-Use:
-
-Skeleton loaders
-Job-card skeletons
-Profile skeletons
-Network skeletons
-Loading buttons
-Toast notifications
-
-Handle errors clearly for:
-
-Login
-Registration
-Applications
-Network requests
-Profile updates
-Search
-🤝 What Developers Can Contribute
-
-Developers are welcome to contribute:
-
-💬 Feedback
-🐛 Bug fixes
-✨ New features
-🎨 UI improvements
-♿ Accessibility improvements
-⚡ Performance improvements
-🧹 Code refactoring
-📱 Mobile improvements
-🎬 Animation improvements
-💡 Future Improvements
-
-Potential future features include:
-
-🔍 Advanced job search
-📍 Location-based job discovery
-🏷️ Advanced filtering
-🔖 Saved jobs
-👤 Advanced professional profiles
-📤 Direct job applications
-🏢 Company profiles
-🔔 Real-time notifications
-📊 Application tracking
-🌙 Dark/light theme options
-🤝 Professional networking
-💬 Messaging
-📱 Improved mobile experience
-🏗️ Technology Stack
-Frontend
-⚛️ React 19
-📘 TypeScript
-⚡ Vite
-🧭 React Router
-🎨 Tailwind CSS 4
-🖼️ Lucide React
-✨ Motion
-Backend
-🟢 Node.js
-🚂 Express
-📘 TypeScript
-🍃 MongoDB
-🧩 Mongoose
-🔐 JWT
-🔑 bcrypt
-📎 Multer
-🌐 CORS
-🔧 dotenv
 📁 Project Structure
 .
 ├── backend/
-│   ├── config/          MongoDB connection
-│   ├── middleware/      Authentication and role guards
-│   ├── models/          User, Profile, Job, and Application schemas
-│   ├── routes/          Auth, seeker, and admin APIs
-│   └── server.ts        Express entry point
+│   ├── config/
+│   │   └── MongoDB connection
+│   │
+│   ├── middleware/
+│   │   ├── Authentication
+│   │   └── Role guards
+│   │
+│   ├── models/
+│   │   ├── User
+│   │   ├── Profile
+│   │   ├── Job
+│   │   └── Application
+│   │
+│   ├── routes/
+│   │   ├── Auth APIs
+│   │   ├── Seeker APIs
+│   │   └── Admin APIs
+│   │
+│   └── server.ts
+│
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/       Seeker and admin screens
-│   │   ├── api.ts       Authenticated API helpers
+│   │   ├── pages/
+│   │   │   ├── Seeker
+│   │   │   └── Admin
+│   │   │
+│   │   ├── api.ts
 │   │   ├── AuthContext.tsx
 │   │   └── App.tsx
+│   │
 │   └── index.html
+│
 ├── .env.example
 └── package.json
 
-📋 API Reference
+🧰 Technology Stack
+Layer	Technology
+🎨 Frontend	React 19
+📘 Language	TypeScript
+⚡ Build Tool	Vite
+🧭 Routing	React Router
+🎨 Styling	Tailwind CSS 4
+✨ Animation	Motion
+🖼️ Icons	Lucide React
+⚙️ Backend	Node.js + Express
+🗄️ Database	MongoDB
+🧩 ODM	Mongoose
+🔐 Authentication	JWT
+🔑 Password Security	bcrypt
+📎 Uploads	Multer
+💾 File Storage	MongoDB GridFS
+🌐 API	REST
 
+🔐 Authentication
+Stack Portal uses protected authentication flows.
+
+Registration
+Register
+   ↓
+Email Verification
+   ↓
+Account Activated
+
+Login
+Email + Password
+       ↓
+Login OTP
+       ↓
+OTP Verification
+       ↓
+JWT
+       ↓
+Authenticated Session
+
+Password Reset
+Forgot Password
+      ↓
+Reset Code
+      ↓
+New Password
+      ↓
+Password Updated
+
+🛡️ Authorization
+The platform supports two roles:
+
+SEEKER
+ADMIN
+
+Protected routes validate:
+
+Authentication
+JWT
+User role
+Resource ownership where required
+📡 API Reference
 All protected endpoints require:
 
 Authorization: Bearer <jwt-token>
 
-🔐 Authentication
+🔐 Authentication API
+Method	Endpoint	Description	Auth
+POST	/api/auth/register	Create account and send verification code	❌
+POST	/api/auth/verify-email	Verify six-digit email code	❌
+POST	/api/auth/login	Validate credentials and send login OTP	❌
+POST	/api/auth/login/verify-otp	Verify OTP and issue JWT	❌
+POST	/api/auth/forgot-password	Send password reset code	❌
+POST	/api/auth/reset-password	Set new password	❌
+GET	/api/auth/me	Get authenticated user	✅
+
+👨‍💻 Seeker API
 Method	Endpoint	Description
-POST	/api/auth/register	Create an account and send verification code
-POST	/api/auth/verify-email	Verify a six-digit email code
-POST	/api/auth/login	Validate credentials and send login OTP
-POST	/api/auth/login/verify-otp	Verify login OTP and issue JWT
-POST	/api/auth/forgot-password	Send password reset code
-POST	/api/auth/reset-password	Set a new password with reset code
-GET	/api/auth/me	Return the authenticated user
-👨‍💻 Seeker
-Method	Endpoint	Description
-GET	/api/seeker/profile	Get the current seeker's profile
-PATCH	/api/seeker/profile	Update the current seeker's profile
+GET	/api/seeker/profile	Get current seeker profile
+PATCH	/api/seeker/profile	Update current seeker profile
 GET	/api/seeker/jobs	List accessible published jobs
-GET	/api/seeker/jobs/:id	Get an accessible job
-POST	/api/seeker/applications	Apply to a job with { "jobId": "..." }
-GET	/api/seeker/applications	List the current seeker's applications
+GET	/api/seeker/jobs/:id	Get accessible job details
+POST	/api/seeker/applications	Apply to a job
+GET	/api/seeker/applications	Get application history
 
-GET /api/seeker/jobs accepts an optional q query parameter.
+Job Search
+GET /api/seeker/jobs?q=react
 
-Search matches:
+The q parameter searches:
 
 Job title
 Company
 Required skills
-🛠️ Administration
-
-All /api/admin endpoints require an authenticated administrator.
+🛠️ Admin API
+All /api/admin/* endpoints require an authenticated administrator.
 
 Method	Endpoint	Description
-GET	/api/admin/stats	Get dashboard counts
-GET	/api/admin/seekers	List seekers and profiles
-PATCH	/api/admin/seekers/:id/profile	Update a seeker's profile
+GET	/api/admin/stats	Dashboard statistics
+GET	/api/admin/seekers	List registered seekers
+PATCH	/api/admin/seekers/:id/profile	Update seeker profile
 GET	/api/admin/jobs	List all jobs
-POST	/api/admin/jobs	Create a job
-PATCH	/api/admin/jobs/:id	Update a job
-DELETE	/api/admin/jobs/:id	Delete a job
-GET	/api/admin/applications	List all applications
-PATCH	/api/admin/applications/:id/status	Update an application status
-📎 Uploads & Health
+POST	/api/admin/jobs	Create job
+PATCH	/api/admin/jobs/:id	Update job
+DELETE	/api/admin/jobs/:id	Delete job
+GET	/api/admin/applications	List applications
+PATCH	/api/admin/applications/:id/status	Update application status
+
+📎 Upload & Health API
 Method	Endpoint	Description
-POST	/api/upload	Upload one authenticated resume file
-GET	/api/uploads/:id	Authenticated GridFS file retrieval
-GET	/api/health	Return { "status": "ok" }
+POST	/api/upload	Upload authenticated resume
+GET	/api/uploads/:id	Retrieve authenticated GridFS file
+GET	/api/health	API health check
 
-Uploaded files are stored in MongoDB GridFS and are not served as unrestricted static files.
+Health Response
+{
+  "status": "ok"
+}
 
-🗄️ Data Model
+🗄️ Data Models
 User
-
-Contains:
-
-Email
-bcrypt password hash
-Role
+User
+├── email
+├── passwordHash
+└── role
 
 Roles:
 
@@ -801,40 +494,47 @@ ADMIN
 SEEKER
 
 Profile
+Profile
+├── fullName
+├── phone
+├── location
+├── preferredTitle
+├── expectedSalary
+├── skills
+└── resume
 
-One-to-one seeker profile containing:
-
-Contact details
-Skills
-Resume
-Preferred title
-Expected salary
 Job
+Job
+├── title
+├── company
+├── category
+├── description
+├── requirements
+├── location
+├── employmentType
+├── salary
+├── skills
+├── openings
+├── status
+├── visibility
+└── assignedSeeker
 
-Contains:
+Job statuses:
 
-Title
-Company
-Category
-Description
-Requirements
-Employment details
-Salary
-Skills
-Openings
-Status
-Visibility
-Optional assigned seeker
+DRAFT
+PUBLISHED
+OPEN
+CLOSED
+EXPIRED
+
 Application
+Application
+├── seeker
+├── job
+├── status
+└── createdAt
 
-Contains:
-
-Seeker
-Job
-Application status
-Application date
-
-Supported pipeline statuses:
+Statuses:
 
 APPLIED
 UNDER_REVIEW
@@ -843,166 +543,266 @@ INTERVIEW
 SELECTED
 REJECTED
 
-🔄 User Workflow
-👨‍💻 Seeker
-Register / Login
-      ↓
-Verify Account
-      ↓
-Browse Jobs
-      ↓
-Search / Filter
-      ↓
-View Job
-      ↓
-Save or Apply
-      ↓
-Application Submitted
-      ↓
-Track Application
-
-🛠️ Administrator
-Login
-  ↓
-Dashboard
-  ↓
-Create / Manage Jobs
-  ↓
-Publish Job
-  ↓
-Review Applications
-  ↓
-Update Candidate Status
-  ↓
-Manage Hiring Pipeline
-
-📦 Installation
+🚀 Installation
 Prerequisites
+Make sure you have:
+
 Node.js 18+
 npm
 MongoDB or MongoDB Atlas
-Install Dependencies
+1. Clone the Repository
+git clone <your-repository-url>
+cd StackPortal
 
-From the repository root:
-
+2. Install Dependencies
 npm run install:all
 
+3. Configure Environment
+Create:
 
-Create the backend environment file:
+backend/.env
+
+from:
 
 copy .env.example backend\.env
 
-
-Update:
+Configure:
 
 PORT=5001
 MONGODB_URI=mongodb+srv://<db_user>:<db_password>@<cluster>/<database>
 JWT_SECRET=replace-with-a-long-random-secret
 NODE_ENV=development
 
-▶️ Running Locally
-
+▶️ Development
 Start frontend and backend together:
 
 npm run dev
 
+Default development addresses:
 
-Default development URLs:
+Frontend
+http://localhost:5173
 
-Frontend → http://localhost:5173
-Backend  → http://localhost:5001
+Backend
+http://localhost:5001
 
+Run separately:
 
-Run applications separately:
-
-npm run dev --prefix backend
 npm run dev --prefix frontend
 
-🚀 Production Build
+npm run dev --prefix backend
 
-Build the project:
+🏗️ Production Build
+Build the complete project:
 
 npm run build
 
-
-Start the production backend:
+Start the production server:
 
 npm start
 
+In production:
 
-In production, Express serves the compiled frontend from:
-
-frontend/dist
-
-
-and provides SPA fallback routing.
-
+Express serves the compiled frontend
+Frontend files are served from frontend/dist
+SPA fallback routing is enabled
+API remains available under /api
 📜 Available Scripts
 Command	Purpose
-npm run install:all	Install root, frontend, and backend dependencies
-npm run dev	Run frontend and backend concurrently
-npm run build	Build frontend and backend
+npm run install:all	Install all dependencies
+npm run dev	Start frontend + backend
+npm run build	Build frontend + backend
 npm start	Start production backend
 npm run lint	Run repository lint placeholder
-🔐 Security & Deployment
-🔒 Never commit backend/.env.
-🔑 Replace the example JWT secret before deployment.
-🗄️ Use a restricted MongoDB user.
-🌐 Configure MongoDB Atlas network access correctly.
-📎 Protect uploaded resume files.
-💾 Use persistent storage or external object storage for production deployments.
-🍪 Consider moving JWT storage from browser local storage to an httpOnly cookie strategy for higher-security deployments.
-🤝 Contributions
 
-Contributions, suggestions, and feedback are welcome.
+🔄 Application Workflow
+👨‍💻 Job Seeker
+Register
+   ↓
+Verify Email
+   ↓
+Login
+   ↓
+OTP Verification
+   ↓
+Home
+   ↓
+Search / Filter Jobs
+   ↓
+View Job
+   ↓
+Save OR Apply
+   ↓
+Application Submitted
+   ↓
+Track Application
 
-If you have an idea that could improve STACK PORTAL, feel free to:
+🛠️ Administrator
+Admin Login
+    ↓
+Dashboard
+    ↓
+Create Job
+    ↓
+Publish Job
+    ↓
+Receive Applications
+    ↓
+Review Candidates
+    ↓
+Update Application Status
+    ↓
+Hiring Decision
 
-Open an issue
-Suggest a feature
-Report a bug
-Submit improvements
-Share UI/UX feedback
-Improve performance
-Improve accessibility
-🎯 Project Goal
+🔒 Security
+Important security practices:
 
-The long-term goal of STACK PORTAL is to evolve from a basic job portal into a complete platform connecting:
+Passwords are hashed using bcrypt.
+JWT authentication protects private APIs.
+Role-based authorization separates SEEKER and ADMIN.
+Protected GridFS files require authentication.
+Resume files are not exposed as unrestricted static files.
+Environment secrets must not be committed.
+MongoDB credentials must remain private.
+Production deployments should use a strong JWT secret.
+Database users should have restricted permissions.
+Production Recommendation
+The current application stores JWTs in browser local storage.
 
-Job Seekers + Professionals + Employers
+For higher-security production deployments, consider migrating to:
 
-through a simple, modern, intuitive, and professional experience.
+httpOnly Secure SameSite Cookies
 
-The primary focus is on:
+📎 Resume Storage
+Resume files are stored using MongoDB GridFS.
 
-🎨 UI/UX design
-💡 Creative problem-solving
-📱 Responsive web development
-👤 User-friendly interfaces
-💼 Job discovery
+Supported formats:
+
+PDF
+DOC
+DOCX
+
+Uploaded files are authenticated before retrieval.
+
+For production deployments using ephemeral infrastructure, configure:
+
+Persistent storage
+External object storage
+Appropriate file retention policies
+📱 Responsive Design
+Stack Portal is designed for:
+
+🖥️ Desktop
+💻 Laptop
+📱 Tablet
+📲 Mobile
+The UI should adapt navigation, job cards, filters, profiles, and networking components to smaller screens.
+
+♿ Accessibility
+The frontend should support:
+
+Keyboard navigation
+Focus states
+Accessible labels
+Screen-reader-friendly controls
+Proper color contrast
+Responsive text sizing
+Animations should respect:
+
+prefers-reduced-motion
+
+🤝 Contributing
+Contributions are welcome! ❤️
+
+If you would like to improve Stack Portal:
+
+Fork the repository.
+Create a feature branch.
+Make your changes.
+Test your changes.
+Commit your work.
+Push your branch.
+Open a Pull Request.
+Contributions can include:
+🐛 Bug fixes
+✨ New features
+🎨 UI/UX improvements
+⚡ Performance improvements
+♿ Accessibility improvements
+📱 Mobile improvements
+🔐 Security improvements
+🧹 Code refactoring
+📚 Documentation
+💡 Future Roadmap
+Potential improvements include:
+
+💬 Professional messaging
+🏢 Company profiles
+🔔 Real-time notifications
+🤝 Advanced networking
+🔎 AI-powered job search
+🤖 Job recommendations
+📊 Advanced application analytics
+📄 Resume builder
+🎯 Personalized career recommendations
+🌙 Dark/light theme
+📱 Progressive Web App
+💼 Employer/recruiter accounts
+🧠 Skill-based recommendations
+⚠️ Deployment Notes
+Before deploying to production:
+
+ Configure a production MongoDB database.
+ Set a strong JWT_SECRET.
+ Configure environment variables.
+ Restrict MongoDB access.
+ Configure secure file storage.
+ Enable HTTPS.
+ Review authentication security.
+ Review CORS configuration.
+ Review uploaded-file validation.
+ Configure production logging.
+ Test all protected routes.
+ Test role-based access.
+ Test application duplication prevention.
+ Test resume access permissions.
+🎯 Project Goals
+Stack Portal aims to evolve into a complete platform connecting:
+
+<div align="center">
+👨‍💻 Job Seekers
+⬇️
+
+💼 Opportunities
+⬇️
+
+🤝 Professional Network
+⬇️
+
+🚀 Career Growth
+</div>
+The project focuses on:
+
+🎨 Modern UI/UX
+💼 Better job discovery
 🤝 Professional networking
 🔐 Secure authentication
+📱 Responsive design
 ⚡ Performance
-✨ Modern interactions and animations
+✨ Smooth interactions
+🧩 Scalable architecture
 ⭐ Developer Note
+Stack Portal is a learning and development project built around real-world requirements.
 
-This project is built as a learning and development project based on real-world user requirements.
+The project is continuously evolving with a focus on building practical full-stack development skills and creating a useful career platform.
 
-The goal is to continuously improve the platform through better:
-
-UI/UX
-Functionality
-Accessibility
-Performance
-Security
-User experience
 <div align="center">
-🚀 Have an idea for STACK PORTAL?
-
-Your feedback and suggestions are always welcome.
-
-💙 Built with passion for better career opportunities.
-
+🚀 STACK PORTAL
+Discover. Connect. Apply. Grow.
+<br />
 Created by ClimberCoder [Vansh]
+
+<br />
+⭐ If you find this project useful, consider giving it a star!
 
 </div>
