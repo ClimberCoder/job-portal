@@ -73,3 +73,8 @@ Understanding and implementing user requirements
 
 Have an idea for STACK PORTAL?
 Your feedback and suggestions are always welcome. 🚀
+
+
+
+
+## Some NEW Feature to be add as SOON:
