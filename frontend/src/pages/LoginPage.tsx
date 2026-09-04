@@ -8,6 +8,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [requiresOtp, setRequiresOtp] = useState(false);
+  const [otp, setOtp] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -17,12 +19,17 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const data = await fetchApi('/auth/login', {
+      const data = await fetchApi(requiresOtp ? '/auth/login/verify-otp' : '/auth/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(requiresOtp ? { email, otp } : { email, password })
       });
-      login(data.token, data.user);
-      navigate(data.user.role === 'ADMIN' ? '/admin' : '/jobs');
+      if (data.requiresOtp) {
+        setRequiresOtp(true);
+        setError('A one-time code was sent to your email.');
+      } else {
+        login(data.token, data.user);
+        navigate(data.user.role === 'ADMIN' ? '/admin' : '/jobs');
+      }
     } catch (err: any) {
       setError(err.message || 'Login failed');
     } finally {
@@ -49,7 +56,11 @@ export default function LoginPage() {
               className="px-4 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white rounded-none transition-colors font-mono"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          {requiresOtp && <div className="flex flex-col gap-2">
+            <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Email OTP</label>
+            <input type="text" inputMode="numeric" pattern="[0-9]{6}" required value={otp} onChange={e => setOtp(e.target.value)} className="px-4 py-3 bg-zinc-900/80 border border-white/5 text-white font-mono" placeholder="6-digit code" />
+          </div>}
+          {!requiresOtp && <div className="flex flex-col gap-2">
             <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Password</label>
             <input 
               type="password" 
@@ -58,7 +69,7 @@ export default function LoginPage() {
               onChange={e => setPassword(e.target.value)}
               className="px-4 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white rounded-none transition-colors font-mono"
             />
-          </div>
+          </div>}
           <button 
             type="submit" 
             disabled={loading}
@@ -68,6 +79,7 @@ export default function LoginPage() {
           </button>
           
           <div className="mt-6 text-center text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+            <Link to="/forgot-password" className="block text-cyan-400 mb-4">FORGOT PASSWORD?</Link>
             NO ACCOUNT? <Link to="/register" className="text-cyan-400 hover:text-cyan-300 ml-2">REGISTER HERE</Link>
           </div>
         </form>

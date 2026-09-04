@@ -21,7 +21,7 @@ export const connectDB = async () => {
       console.log('No MONGODB_URI provided. Starting MongoDB Memory Server...');
       mongoServer = await MongoMemoryServer.create();
       uri = mongoServer.getUri();
-    } else if (uri.includes('localhost') && process.env.NODE_ENV !== 'production') {
+    } else if (/^mongodb(?:\+srv)?:\/\/(?:[^@/]+@)?(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\/|$)/i.test(uri) && process.env.NODE_ENV !== 'production') {
       console.log('Starting MongoDB Memory Server for local development...');
       mongoServer = await MongoMemoryServer.create();
       uri = mongoServer.getUri();
@@ -30,23 +30,37 @@ export const connectDB = async () => {
     const conn = await mongoose.connect(uri);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
 
+    // Backfill usernames for accounts created before username support was added.
+    const accountsMissingUsername: any[] = await User.find({ $or: [{ username: { $exists: false } }, { username: null }, { username: '' }] }).select('_id email').lean();
+    for (const account of accountsMissingUsername) {
+      const base = String(account.email || 'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 24) || 'user';
+      let username = base;
+      let suffix = 1;
+      while (await User.exists({ username, _id: { $ne: account._id } })) username = `${base.slice(0, 24 - String(suffix).length)}${suffix++}`;
+      await User.updateOne({ _id: account._id }, { $set: { username } });
+    }
+
     const userCount = await User.countDocuments();
-    if (userCount === 0) {
-      const adminPasswordHash = await bcrypt.hash('admin123', 10);
+    if (userCount === 0 && process.env.SEED_ADMIN_PASSWORD && process.env.SEED_SEEKER_PASSWORD) {
+      const adminPasswordHash = await bcrypt.hash(process.env.SEED_ADMIN_PASSWORD, 12);
       await User.create({
         email: 'admin@example.com',
+        username: 'admin',
         passwordHash: adminPasswordHash,
         role: 'ADMIN',
+        emailVerified: true,
       });
-      console.log('Default admin seeded: admin@example.com / admin123');
+      console.log('Development admin account seeded from SEED_ADMIN_PASSWORD.');
 
-      const seekerPasswordHash = await bcrypt.hash('seeker123', 10);
+      const seekerPasswordHash = await bcrypt.hash(process.env.SEED_SEEKER_PASSWORD, 12);
       await User.create({
         email: 'seeker@example.com',
+        username: 'seeker',
         passwordHash: seekerPasswordHash,
         role: 'SEEKER',
+        emailVerified: true,
       });
-      console.log('Default seeker seeded: seeker@example.com / seeker123');
+      console.log('Development seeker account seeded from SEED_SEEKER_PASSWORD.');
     }
 
     const jobCount = await Job.countDocuments();
@@ -103,4 +117,3 @@ export const connectDB = async () => {
     process.exit(1);
   }
 };
-

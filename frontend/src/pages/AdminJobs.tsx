@@ -76,6 +76,7 @@ export default function AdminJobs() {
             { label: 'Salary Range', name: 'salaryRange', type: 'text' },
             { label: 'Skills Required', name: 'skillsRequired', type: 'text' },
             { label: 'Openings', name: 'openings', type: 'number', defaultValue: '1' },
+            { label: 'Application Deadline', name: 'deadline', type: 'datetime-local' },
           ].map((f) => (
             <div key={f.name} className="flex flex-col gap-2">
               <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{f.label}</label>
@@ -93,6 +94,13 @@ export default function AdminJobs() {
             <select name="visibility" defaultValue={editingJob?.visibility || 'PUBLIC'} className="px-4 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white font-mono text-sm transition-colors rounded-none appearance-none">
               <option value="PUBLIC" className="bg-zinc-900">Public (All Seekers)</option>
               <option value="PRIVATE" className="bg-zinc-900">Private (Assigned Only)</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Publication Status</label>
+            <select name="status" defaultValue={editingJob?.status || 'PUBLISHED'} className="px-4 py-3 bg-zinc-900/80 border border-white/5 text-white font-mono text-sm">
+              <option value="DRAFT">DRAFT</option><option value="PUBLISHED">PUBLISHED</option><option value="CLOSED">CLOSED</option>
             </select>
           </div>
 
@@ -140,6 +148,11 @@ export default function AdminJobs() {
                 <p className="text-xs font-mono text-zinc-500">{job.company} &bull; {job.location}</p>
               </div>
               <div className="flex gap-4">
+                {[
+                  ['PUBLISHED', 'publish'], ['DRAFT', 'unpublish'], ['CLOSED', 'close'], ['ARCHIVED', 'archive'], ['DUPLICATE', 'duplicate']
+                ].filter(([label]) => label === 'DUPLICATE' || (label === 'PUBLISHED' && job.status !== 'PUBLISHED') || (label === 'DRAFT' && job.status === 'PUBLISHED') || (label === 'CLOSED' && job.status !== 'CLOSED') || (label === 'ARCHIVED' && job.status !== 'ARCHIVED')).map(([label, action]) => (
+                  <button key={action} onClick={async () => { await fetchApi(`/admin/jobs/${jobId}/${action}`, { method: 'POST' }); loadData(); }} className="text-[10px] font-bold text-zinc-400 hover:text-cyan-400 uppercase tracking-widest">{label}</button>
+                ))}
                 <button onClick={() => { setEditingJob(job); setIsCreating(true); }} className="text-[10px] font-bold text-zinc-400 hover:text-cyan-400 uppercase tracking-widest transition-colors">EDIT</button>
                 <button 
                   onClick={async () => {

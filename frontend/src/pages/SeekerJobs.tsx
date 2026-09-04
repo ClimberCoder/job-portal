@@ -1,77 +1,47 @@
 import { useEffect, useState } from 'react';
 import { fetchApi } from '../api';
-import { Link } from 'react-router-dom';
+import JobCard from '../components/JobCard';
 
 export default function SeekerJobs() {
   const [jobs, setJobs] = useState<any[]>([]);
   const [query, setQuery] = useState('');
+  const [location, setLocation] = useState('');
+  const [workplaceType, setWorkplaceType] = useState('');
+  const [employmentType, setEmploymentType] = useState('');
+  const [sort, setSort] = useState('createdAt');
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const loadJobs = async (search = '') => {
+  const loadJobs = async (targetPage = page) => {
+    setLoading(true);
     try {
-      const data = await fetchApi(`/seeker/jobs${search ? `?q=${search}` : ''}`);
-      setJobs(data);
-    } catch (e) {
-      console.error(e);
-    }
+      const params = new URLSearchParams({ page: String(targetPage), limit: '12', sort });
+      if (query) params.set('q', query);
+      if (location) params.set('location', location);
+      if (workplaceType) params.set('workplaceType', workplaceType);
+      if (employmentType) params.set('employmentType', employmentType);
+      const data = await fetchApi(`/seeker/jobs?${params}`);
+      setJobs(data.items || []);
+      setPages(data.pages || 1);
+      setError('');
+    } catch (e: any) { setError(e.message || 'Unable to load jobs'); } finally { setLoading(false); }
   };
+  useEffect(() => { loadJobs(page); }, [page, sort, workplaceType, employmentType]);
+  const submit = (event: React.FormEvent) => { event.preventDefault(); setPage(1); loadJobs(1); };
 
-  useEffect(() => { loadJobs(); }, []);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    loadJobs(query);
-  };
-
-  return (
-    <div className="py-12">
-      <div className="mb-12 border-b border-white/5 pb-8 flex flex-col md:flex-row gap-6 justify-between items-end">
-        <div>
-          <h1 className="text-4xl font-bold tracking-tighter text-white mb-2">Available Positions.</h1>
-          <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Browse and apply</p>
-        </div>
-        
-        <form onSubmit={handleSearch} className="flex w-full md:w-auto">
-          <input 
-            type="text" 
-            placeholder="Search keywords..." 
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            className="px-6 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white font-mono text-sm transition-colors rounded-none w-full md:w-64" 
-          />
-          <button type="submit" className="bg-white text-black px-6 py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-zinc-200 transition-colors">
-            SEARCH
-          </button>
-        </form>
-      </div>
-
-      <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-        {jobs.map(job => {
-          const jobId = job._id || job.id;
-          return (
-            <div key={jobId} className="p-8 bg-zinc-900/30 border border-white/5 hover:border-cyan-500/50 transition-colors flex flex-col group">
-              <div className="flex items-center gap-2 mb-4">
-                {job.visibility === 'PRIVATE' && (
-                  <span className="px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-bold uppercase tracking-widest">ASSIGNED TO YOU</span>
-                )}
-                {job.employmentType && (
-                  <span className="px-2 py-1 bg-zinc-800 text-zinc-400 text-[9px] font-bold uppercase tracking-widest">{job.employmentType}</span>
-                )}
-              </div>
-              
-              <h3 className="text-2xl font-bold tracking-tight text-white mb-2 group-hover:text-cyan-400 transition-colors">{job.title}</h3>
-              <div className="text-sm font-mono text-zinc-500 mb-6">{job.company} &bull; {job.location || 'Remote'}</div>
-              
-              <div className="mt-auto pt-6 border-t border-white/5 flex justify-between items-center">
-                <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{job.salaryRange || 'Salary Unspecified'}</div>
-                <Link to={`/jobs/${jobId}`} className="text-cyan-400 text-[10px] font-bold uppercase tracking-widest hover:text-cyan-300">
-                  VIEW DETAILS &rarr;
-                </Link>
-              </div>
-            </div>
-          );
-        })}
-        {jobs.length === 0 && <div className="col-span-full text-center py-12 text-zinc-500 font-mono text-sm uppercase tracking-widest">NO POSITIONS FOUND</div>}
-      </div>
-    </div>
-  );
+  return <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
+    <div className="mb-7"><p className="text-sm text-cyan-300">Opportunity discovery</p><h1 className="mt-1 text-3xl font-bold text-white">Find jobs</h1><p className="mt-2 text-sm text-zinc-400">Search roles by title, company, skills, location, or work style.</p></div>
+    <form onSubmit={submit} className="mb-8 grid gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:grid-cols-2 lg:grid-cols-5">
+      <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search jobs, companies, skills..." className="rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none focus:border-cyan-400/60 lg:col-span-2" />
+      <input value={location} onChange={e => setLocation(e.target.value)} placeholder="Location" className="rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none focus:border-cyan-400/60" />
+      <select value={workplaceType} onChange={e => { setWorkplaceType(e.target.value); setPage(1); }} className="rounded-lg border border-white/10 bg-[#171a21] px-3 py-3 text-sm text-white"><option value="">Any workplace</option><option value="REMOTE">Remote</option><option value="HYBRID">Hybrid</option><option value="ONSITE">On-site</option></select>
+      <select value={employmentType} onChange={e => { setEmploymentType(e.target.value); setPage(1); }} className="rounded-lg border border-white/10 bg-[#171a21] px-3 py-3 text-sm text-white"><option value="">Any job type</option><option value="Full-Time">Full-time</option><option value="Part-Time">Part-time</option><option value="Contract">Contract</option><option value="Internship">Internship</option></select>
+      <select value={sort} onChange={e => { setSort(e.target.value); setPage(1); }} className="rounded-lg border border-white/10 bg-[#171a21] px-3 py-3 text-sm text-white"><option value="createdAt">Newest</option><option value="title">Title</option><option value="deadline">Deadline</option><option value="salaryMax">Highest salary</option></select>
+      <button className="rounded-lg bg-cyan-400 px-4 py-3 text-xs font-bold uppercase tracking-wider text-black hover:bg-cyan-300 sm:col-span-2 lg:col-span-1">Search</button>
+    </form>
+    {error && <div role="alert" className="mb-5 rounded-xl border border-red-400/20 bg-red-400/10 p-4 text-sm text-red-200">{error}</div>}
+    {loading ? <div className="py-16 text-center text-zinc-500">Finding opportunities...</div> : jobs.length ? <><div className="grid gap-5 md:grid-cols-2">{jobs.map(job => <JobCard key={job._id || job.id} job={job} onChange={() => loadJobs(page)} />)}</div><div className="mt-8 flex items-center justify-center gap-4"><button disabled={page <= 1} onClick={() => setPage(page - 1)} className="rounded-lg border border-white/15 px-4 py-2 text-xs text-white disabled:opacity-30">Previous</button><span className="text-xs text-zinc-500">Page {page} of {pages}</span><button disabled={page >= pages} onClick={() => setPage(page + 1)} className="rounded-lg border border-white/15 px-4 py-2 text-xs text-white disabled:opacity-30">Next</button></div></> : <div className="rounded-2xl border border-dashed border-white/15 p-12 text-center text-zinc-400">No jobs match your search. Try a different skill, location, or filter.</div>}
+  </div>;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchApi } from '../api';
+import { fetchApi, openProtectedFile } from '../api';
 
 export default function AdminApplications() {
   const [apps, setApps] = useState<any[]>([]);
@@ -45,9 +45,9 @@ export default function AdminApplications() {
                 <div className="text-sm text-zinc-400 font-mono mb-4">{app.user?.email}</div>
                 
                 {app.profile?.resumeUrl && (
-                  <a href={app.profile.resumeUrl} target="_blank" rel="noreferrer" className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest hover:underline">
+                  <button onClick={() => openProtectedFile(app.profile.resumeUrl)} className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest hover:underline">
                     VIEW RESUME &rarr;
-                  </a>
+                  </button>
                 )}
               </div>
 

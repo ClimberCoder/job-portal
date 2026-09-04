@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-body {
-  background-color: #0F1115;
-  color: #E4E4E7;
-}
+:root { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+body { margin: 0; }
+.app-shell { min-height: 100vh; transition: background-color .2s ease, color .2s ease; }
+.theme-dark { background: #0f1115; color: #e4e4e7; }
+.theme-light { background: #f7f8fa; color: #18181b; }
+.theme-light nav { background: rgba(255,255,255,.9); border-color: #e4e4e7; }
+@keyframes stackportal-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.job-card-enter { animation: stackportal-rise .35s ease both; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }

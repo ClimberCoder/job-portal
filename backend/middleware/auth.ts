@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { User } from '../models/User.js';
+import mongoose from 'mongoose';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-for-dev';
+dotenv.config();
+const JWT_SECRET = process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'local-development-secret-change-me');
 
 export interface AuthRequest extends Request {
   dbUser?: any;
@@ -19,12 +22,20 @@ export const requireAuth = async (
     return;
   }
 
-  const token = authHeader.split('Bearer ')[1];
+  const token = authHeader.slice(7).trim();
+  if (!JWT_SECRET || !token) {
+    res.status(401).json({ error: 'Unauthorized: Invalid token' });
+    return;
+  }
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { id: string; email: string; role: string };
+    const decoded = jwt.verify(token, JWT_SECRET) as { id: string; role: string; tokenVersion?: number };
+    if (!mongoose.isValidObjectId(decoded.id)) {
+      res.status(401).json({ error: 'Unauthorized: Invalid token' });
+      return;
+    }
     
     const userResult = await User.findById(decoded.id);
-    if (userResult) {
+    if (userResult && (decoded.tokenVersion === undefined || decoded.tokenVersion === userResult.tokenVersion)) {
       req.dbUser = userResult;
     } else {
       res.status(401).json({ error: 'Unauthorized: User not found' });
@@ -33,7 +44,6 @@ export const requireAuth = async (
     
     next();
   } catch (error) {
-    console.error('Error verifying token:', error);
     res.status(401).json({ error: 'Unauthorized: Invalid token' });
     return;
   }

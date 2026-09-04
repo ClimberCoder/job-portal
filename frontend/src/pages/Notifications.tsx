@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react';
+import { fetchApi } from '../api';
+
+export default function Notifications() {
+  const [items, setItems] = useState<any[]>([]);
+  useEffect(() => { fetchApi('/seeker/notifications').then(setItems).catch(console.error); }, []);
+  const read = async (id: string) => { await fetchApi(`/seeker/notifications/${id}/read`, { method: 'PATCH' }); setItems(items.map(item => item._id === id ? { ...item, readAt: new Date() } : item)); };
+  const readAll = async () => { await fetchApi('/seeker/notifications/read-all', { method: 'PATCH' }); setItems(items.map(item => ({ ...item, readAt: new Date() }))); };
+  return <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6"><div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm text-cyan-300">Stay up to date</p><h1 className="mt-1 text-3xl font-bold text-white">Alerts</h1><p className="mt-2 text-sm text-zinc-400">Application updates, connection activity, and useful reminders.</p></div><button onClick={readAll} className="rounded-lg border border-white/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-300 hover:border-cyan-300">Mark all read</button></div>{items.length ? items.map(item => <button key={item._id} onClick={() => read(item._id)} className={`mb-3 block w-full rounded-2xl border p-5 text-left transition ${item.readAt ? 'border-white/5 bg-white/[0.02] opacity-60' : 'border-cyan-400/30 bg-cyan-400/[0.05]'}`}><div className="flex items-start justify-between gap-4"><div><h2 className="font-semibold text-white">{item.title}</h2><p className="mt-2 text-sm leading-6 text-zinc-400">{item.message}</p></div>{!item.readAt && <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300" />}</div></button>) : <div className="rounded-2xl border border-dashed border-white/15 p-12 text-center"><h2 className="text-lg font-semibold text-white">You are all caught up.</h2><p className="mt-2 text-sm text-zinc-400">New job and network activity will appear here.</p></div>}</div>;
+}

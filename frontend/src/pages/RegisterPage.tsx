@@ -6,7 +6,9 @@ import { fetchApi } from '../api';
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -20,10 +22,14 @@ export default function RegisterPage() {
     try {
       const data = await fetchApi('/auth/register', {
         method: 'POST',
-        body: JSON.stringify({ email, password, fullName, role: 'SEEKER' })
+        body: JSON.stringify({ email, password, confirmPassword, fullName, username, role: 'SEEKER' })
       });
-      login(data.token, data.user);
-      navigate('/jobs');
+      if (data.token) {
+        login(data.token, data.user);
+        navigate('/jobs');
+      } else {
+        navigate(`/verify-email?email=${encodeURIComponent(email)}`);
+      }
     } catch (err: any) {
       setError(err.message || 'Registration failed');
     } finally {
@@ -40,6 +46,14 @@ export default function RegisterPage() {
         {error && <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-mono">{error}</div>}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Confirm Password</label>
+            <input type="password" required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="px-4 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white rounded-none transition-colors font-mono" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Username</label>
+            <input type="text" required minLength={3} maxLength={30} pattern="[a-zA-Z0-9_]+" value={username} onChange={e => setUsername(e.target.value)} className="px-4 py-3 bg-zinc-900/80 border border-white/5 focus:outline-none focus:border-cyan-500/50 text-white rounded-none transition-colors font-mono" placeholder="your_username" />
+          </div>
           <div className="flex flex-col gap-2">
             <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Full Name</label>
             <input 

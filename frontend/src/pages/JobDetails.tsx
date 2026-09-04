@@ -31,6 +31,12 @@ export default function JobDetails() {
       setApplying(false);
     }
   };
+  const toggleSaved = async () => {
+    try {
+      await fetchApi(`/seeker/jobs/${id}/save`, { method: job.isSaved ? 'DELETE' : 'POST' });
+      setJob({ ...job, isSaved: !job.isSaved });
+    } catch (e: any) { alert(e.message); }
+  };
 
   if (loading) return <div className="p-12 text-center text-zinc-500 font-mono text-sm uppercase tracking-widest">LOADING LISTING...</div>;
   if (!job) return <div className="p-12 text-center text-red-500 font-mono text-sm uppercase tracking-widest">ERROR: LISTING NOT FOUND</div>;
@@ -50,7 +56,8 @@ export default function JobDetails() {
         </div>
 
         <h1 className="text-5xl font-bold tracking-tighter text-white mb-4">{job.title}</h1>
-        <div className="text-lg font-mono text-cyan-400 mb-12">{job.company} &bull; {job.location || 'Remote'}</div>
+        <div className="text-lg font-mono text-cyan-400 mb-4">{job.company} &bull; {job.location || 'Remote'}</div>
+        {job.deadline && <div className="text-xs text-amber-400 mb-8">Applications close {new Date(job.deadline).toLocaleString()}</div>}
 
         <div className="grid grid-cols-2 gap-8 mb-12 py-8 border-y border-white/5">
           <div>
@@ -74,6 +81,10 @@ export default function JobDetails() {
           </div>
         </div>
 
+        <div className="flex gap-3">
+        <button onClick={toggleSaved} className="border border-cyan-500 text-cyan-400 px-6 py-5 text-sm font-bold tracking-widest uppercase">
+          {job.isSaved ? 'SAVED' : 'SAVE JOB'}
+        </button>
         <button 
           onClick={handleApply} 
           disabled={applying}
@@ -81,6 +92,7 @@ export default function JobDetails() {
         >
           {applying ? 'SUBMITTING...' : 'SUBMIT APPLICATION'}
         </button>
+        </div>
       </div>
     </div>
   );
